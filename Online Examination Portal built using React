@@ -1,0 +1,71 @@
+import React, { useEffect, useRef, useState } from "react";
+
+function App() {
+  const inputRef = useRef(null);
+  const intervalRef = useRef(null);
+
+  const [time, setTime] = useState(0);
+  const [answer, setAnswer] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = () => {
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);          // Disable immediately
+    clearInterval(intervalRef.current); // Stop timer
+
+    // Simulate API call
+    setTimeout(() => {
+      alert("Exam Submitted!\nTime Taken: " + time + " seconds");
+    }, 1000);
+  };
+
+
+  useEffect(() => {
+    intervalRef.current = setInterval(() => {
+      setTime((prev) => {
+        console.log(time, prev)
+        // submit after 5 mins
+        if(prev == 5*60){
+          clearInterval(intervalRef.current);
+          handleSubmit();
+          return prev
+        }
+        return prev + 1
+      });
+    }, 1000);
+
+    return () => clearInterval(intervalRef.current);
+  }, []);
+
+
+  return (
+    <div style={{ padding: "40px", fontFamily: "Arial" }}>
+      <h2>Online Examination</h2>
+
+      <p className="Hello"><strong>Time:</strong> {time} seconds</p>
+
+      <input
+        ref={inputRef}
+        type="text"
+        value={answer}
+        onChange={(e) => setAnswer(e.target.value)}
+        placeholder="Type your answer..."
+        style={{ padding: "8px", width: "300px" }}
+        autoFocus
+      />
+
+      <br /><br />
+
+      <button
+        onClick={handleSubmit}
+        disabled={isSubmitting}
+        style={{ padding: "8px 16px" }}
+      >
+        {isSubmitting ? "Answer Submitted" : "Submit"}
+      </button>
+    </div>
+  );
+}
+
+export default App;
