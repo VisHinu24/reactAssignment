@@ -1,0 +1,102 @@
+src
+ ├── App.js
+ ├── Student.js
+ └── Grade.js
+
+App.js
+
+import React from "react";
+import Student from "./Student";
+
+function App() {
+
+  const calculateGrade = (marks) => {
+    if (marks >= 90) return "O";
+    if (marks >= 80) return "A+";
+    if (marks >= 70) return "A";
+    if (marks >= 60) return "B";
+    if (marks >= 50) return "C";
+    return "RA";
+  };
+
+  return (
+    <div>
+      <h1>Student Grade Calculator</h1>
+
+      <Student 
+        name="Vishinu"
+        dept="AI & DS"
+        marks={86}
+        calcGrade={calculateGrade}
+      />
+
+      <Student 
+        name="Rahul"
+        dept="IT"
+        marks={72}
+        calcGrade={calculateGrade}
+      />
+
+      <Student 
+        name="Priya"
+        marks={45}
+        calcGrade={calculateGrade}
+      />
+
+    </div>
+  );
+}
+
+
+
+
+export default App;
+
+
+
+Student.js
+
+
+import React from "react";
+import Grade from "./Grade";
+
+function Student({ name, dept, marks, calcGrade }) {
+
+  const grade = calcGrade(marks);
+
+  return (
+    <div style={{border:"1px solid black",padding:"10px",margin:"10px"}}>
+      <h3>Name: {name}</h3>
+      <p>Department: {dept}</p>
+      <p>Marks: {marks}</p>
+
+      <Grade grade={grade}/>
+    </div>
+  );
+}
+
+Student.defaultProps = {
+  dept: "Not Assigned",
+  marks: 0
+};
+
+export default Student;
+
+
+
+Grade.js
+
+
+import React from "react";
+
+function Grade({ grade }) {
+  return (
+    <h2>Grade: {grade}</h2>
+  );
+}
+
+Grade.defaultProps = {
+  grade: "N/A"
+};
+
+export default Grade;
