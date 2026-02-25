@@ -1,0 +1,113 @@
+src
+ ├── App.js
+ ├── Counter.js
+ ├── Toggle.js
+ ├── InputForm.js
+ ├── ColorChanger.js
+ └── LikeButton.js
+********************************************************************************************************************************************************************************************************************
+
+App.js
+
+import React, { useState } from "react";
+
+function Counter() {
+
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <h2>Counter: {count}</h2>
+
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+      <button onClick={() => setCount(count - 1)}>Decrement</button>
+    </div>
+  );
+}
+
+export default Counter;
+********************************************************************************************************************************************************************************************************************
+Toggle.js
+
+import React, { useState } from "react";
+
+function Toggle() {
+
+  const [status, setStatus] = useState(false);
+
+  return (
+    <div>
+      <h2>Status: {status ? "ON" : "OFF"}</h2>
+
+      <button onClick={() => setStatus(!status)}>
+        Toggle
+      </button>
+    </div>
+  );
+}
+
+export default Toggle;
+********************************************************************************************************************************************************************************************************************
+InputForm.js
+
+import React, { useState } from "react";
+
+function InputForm() {
+
+  const [name, setName] = useState("");
+
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Enter Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+
+      <h3>Your Input: {name}</h3>
+    </div>
+  );
+}
+
+export default InputForm;
+
+********************************************************************************************************************************************************************************************************************
+ColorChanger.js
+
+import React, { useState } from "react";
+
+function ColorChanger() {
+
+  const [color, setColor] = useState("white");
+
+  return (
+    <div style={{backgroundColor: color, padding:"20px"}}>
+      <button onClick={() => setColor("lightblue")}>Blue</button>
+      <button onClick={() => setColor("lightgreen")}>Green</button>
+      <button onClick={() => setColor("lightcoral")}>Red</button>
+    </div>
+  );
+}
+
+export default ColorChanger;
+********************************************************************************************************************************************************************************************************************
+
+LikeButton.js
+
+import React, { useState } from "react";
+
+function LikeButton() {
+
+  const [likes, setLikes] = useState(0);
+
+  return (
+    <div>
+      <button onClick={() => setLikes(likes + 1)}>
+        ❤️ Like: {likes}
+      </button>
+    </div>
+  );
+}
+
+export default LikeButton;
