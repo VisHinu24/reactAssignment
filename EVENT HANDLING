@@ -1,0 +1,127 @@
+src
+ ├── AlertButton.js
+ ├── InputCapture.js
+ ├── SubmitForm.js
+ ├── MouseTracker.js
+ ├── ConsoleButton.js
+ └── App.js
+
+********************************************************************************************************************************************************************************************************************
+AlertButton.js
+
+import React from "react";
+
+function AlertButton() {
+
+  const showAlert = () => {
+    alert("Button Clicked!");
+  };
+
+  return (
+    <button onClick={showAlert}>
+      Click Me
+    </button>
+  );
+}
+
+export default AlertButton;
+
+********************************************************************************************************************************************************************************************************************
+InputCapture.js
+import React, { useState } from "react";
+
+function InputCapture() {
+
+  const [value, setValue] = useState("");
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Enter Staff Name"
+        onChange={handleChange}
+      />
+      <h3>Typed: {value}</h3>
+    </div>
+  );
+}
+
+export default InputCapture;
+********************************************************************************************************************************************************************************************************************
+SubmitForm.js
+
+import React, { useState } from "react";
+
+function SubmitForm() {
+
+  const [subject, setSubject] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Subject Selected: " + subject);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="Enter Subject"
+        onChange={(e) => setSubject(e.target.value)}
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+
+export default SubmitForm;
+********************************************************************************************************************************************************************************************************************
+MouseTracker.js
+
+import React, { useState } from "react";
+
+function MouseTracker() {
+
+  const [pos, setPos] = useState({x:0, y:0});
+
+  const trackMouse = (e) => {
+    setPos({
+      x: e.clientX,
+      y: e.clientY
+    });
+  };
+
+  return (
+    <div 
+      onMouseMove={trackMouse}
+      style={{height:"200px",border:"1px solid black"}}
+    >
+      <h3>X: {pos.x} Y: {pos.y}</h3>
+    </div>
+  );
+}
+
+export default MouseTracker;
+********************************************************************************************************************************************************************************************************************
+ConsoleButton.js
+
+import React from "react";
+
+function ConsoleButton() {
+
+  const handleClick = () => {
+    console.log("Button clicked");
+  };
+
+  return (
+    <button onClick={handleClick}>
+      Log Click
+    </button>
+  );
+}
+
+export default ConsoleButton;
+********************************************************************************************************************************************************************************************************************
