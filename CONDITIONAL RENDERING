@@ -1,0 +1,124 @@
+src
+ ├── Login.js
+ ├── EmptyList.js
+ ├── ScoreCard.js
+ ├── PasswordToggle.js
+ ├── Loader.js
+ └── App.js
+********************************************************************************************************************************************************************************************************************
+Login.js
+
+import React, { useState } from "react";
+
+function Login() {
+
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  return (
+    <div>
+      {
+        !loggedIn && 
+        <button onClick={() => setLoggedIn(true)}>
+          Login
+        </button>
+      }
+
+      {
+        loggedIn && <h3>Welcome User!</h3>
+      }
+    </div>
+  );
+}
+
+export default Login;
+********************************************************************************************************************************************************************************************************************
+EmptyList.js
+
+import React from "react";
+
+function EmptyList() {
+
+  const subjects = [];
+
+  return (
+    <div>
+      {
+        subjects.length === 0 
+        ? <h3>No Subjects Selected</h3>
+        : subjects.map((s,i)=><p key={i}>{s}</p>)
+      }
+    </div>
+  );
+}
+
+export default EmptyList;
+********************************************************************************************************************************************************************************************************************
+ScoreCard.js
+import React from "react";
+
+function ScoreCard() {
+
+  const score = 82;
+
+  const style = {
+    backgroundColor: score > 75 ? "lightgreen" : "lightcoral",
+    padding:"20px"
+  };
+
+  return (
+    <div style={style}>
+      Score: {score}
+    </div>
+  );
+}
+
+export default ScoreCard;
+********************************************************************************************************************************************************************************************************************
+PasswordToggle.js
+import React, { useState } from "react";
+
+function PasswordToggle() {
+
+  const [show, setShow] = useState(false);
+
+  return (
+    <div>
+      <input
+        type={show ? "text" : "password"}
+        placeholder="Enter Password"
+      />
+
+      <button onClick={() => setShow(!show)}>
+        {show ? "Hide" : "Show"}
+      </button>
+    </div>
+  );
+}
+
+export default PasswordToggle;
+********************************************************************************************************************************************************************************************************************
+Loader.js
+import React, { useState } from "react";
+
+function Loader() {
+
+  const [loading, setLoading] = useState(true);
+
+  setTimeout(() => {
+    setLoading(false);
+  }, 2000);
+
+  return (
+    <div>
+      {
+        loading 
+        ? <h3>Loading...</h3>
+        : <h3>Data Loaded!</h3>
+      }
+    </div>
+  );
+}
+
+export default Loader;
+********************************************************************************************************************************************************************************************************************
+
